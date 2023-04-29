@@ -1,0 +1,131 @@
+body{
+	background-color: pink;
+  
+}
+
+label{
+    margin-top:10px;
+}
+.container-fluid{
+	background-color: #fff;
+	min-height: 400px;
+}
+.btn-default{
+    /* BS4 changed the appearance of btn-default on anchor tags.
+      I liked the old way better... so that's
+      what I am making happen here.  */
+    background-color: #CCC;
+    color: black;
+}
+.btn {
+    /*make text wrap nicely in buttons */
+    white-space:normal;
+}
+
+.locked {
+    display: none !important; /*locked content must not be shown to user*/
+}
+
+.unlocked {
+    border-width: initial; /*set border-width to whatever the default is. */
+}
+
+.secured {
+    border-width: initial; /*set border-width to whatever the default is. */
+}
+
+.navbar-custom {
+    background-color: pink;
+    color: #414042;
+}
+
+.footer-custom {
+    background-color: pink;
+    color: #414042;
+}
+
+h1 {
+    color: black;
+  }
+
+hr.rounded {
+    border-top: 5px solid #bbb;
+    border-radius: 5px;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+th {
+  background-color: #87ddf4;
+}
+
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+/* animated back ground */
+html {
+    height:100%;
+  }
+  
+  body {
+    margin:0;
+  }
+  
+  .bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, #F5FF90 50%, #41CEEC 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }
+  
+  .content {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }

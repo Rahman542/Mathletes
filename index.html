@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Mathletes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 4 References -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- Link to FontAwesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="css/app.css">
+    <!-- Your custom JavaScript -->
+    <script src="js/app.js"></script>
+
+    <!-- Link to image for the favicon -->
+    <link rel="icon" href="css/calculator.png">
+</head>
+
+<body>
+
+<!-- Top Navigation Bar -->
+
+<nav class="navbar navbar-expand-md navbar-custom navbar-dark fixed-top">
+    <!-- Logo -->
+      <a class ="navbar-brand" href="index.html" style="color:black">
+          <img alt="" src="css/headerlogo.png" style="width:35%; color:black">
+          &nbsp;&nbsp;
+      </a>
+
+    <!-- Toggler Icon for responsiveness -->
+    <button id="toggle-icon" class="navbar-toggler secured" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <!--Menu sets on the left -->
+        <ul class="navbar-nav mr-auto">
+        </ul>
+    <!--Menu sets on the right -->
+    <!--Each individual item can be secured by adding the class: secured -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item secured">
+                <a id="link-level" style="color:black" class="nav-link" href="#"><i class="fa fa-gamepad"></i> Game Level </a>
+            </li>
+            <li class="nav-item secured">
+                <a id="link-history" style="color:black" class="nav-link" href="#"><i class="fa fa-bar-chart"></i> History </a>
+            </li>
+            <!--<li class="nav-item secured">
+                <a id="link-gameBeginner" style="color:black" class="nav-link" href="#"><i class="fa fa-link"></i> Beginner </a>
+            </li>
+            <li class="nav-item secured">
+                <a id="link-gameIntermediate" style="color:black" class="nav-link" href="#"><i class="fa fa-link"></i> Intermediate </a>
+            </li>
+            <li class="nav-item secured">
+                <a id="link-gameAdvanced" style="color:black" class="nav-link" href="#"><i class="fa fa-link"></i> Advanced </a>
+            </li>
+            <li class="nav-item secured">
+                <a id="link-results" style="color:black" class="nav-link" href="#"><i class="fa fa-link"></i> Results </a>
+            </li>-->
+            <li class="nav-item secured">
+                <a id="link-logout" style="color:black" class="nav-link" href="#"><i class="fa fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>    
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<!--Start container for BS4 (Bootstrap 4) formatting-->
+<div class="container-fluid">
+
+    <div class="row text-center">
+        <div class="col-md-12">
+			&nbsp; <!-- place holder for additional top row content -->
+        </div>
+    </div>
+
+    <!--animated background-->
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
+    <div class="row">
+    <div class="col-md-2"></div>
+
+		<div class="col-md-8 content-wrapper " id="div-login" style="display: none;">
+            <br>
+            <div class="text-center">
+                <img src="css/headerlogo2.png" alt="Mathleates Logo" style="width:40%">    
+            </div>   
+            <form id='form-login'>
+				<label for="username">User name:</label>
+				<input type="text" name="username" id="username" class="form-control" >
+				<label for="password">Password:</label>
+                <input type="password" name="password" id="password" class="form-control" >
+                <br>
+				<div class="text-center">
+				<input type="button" value="Login" name="btnLogin" id="btnLogin" class="btn" style="font-size:2em;width:100%; background-color: pink;" >
+                </div>
+                <br>
+                <div id='login_message' class="">
+                </div>
+			</form>
+            <div class="text-center">
+            <img src="css/kids on globe 2.png" alt="Kids image" style="width:60%">
+            </div>
+		</div>
+
+		<div class="col-md-8 content-wrapper " id="div-gamelevel" style="display: none;">
+			<div>
+                <h1>Game</h1>
+                <h3>Please select the game:</h3>
+                <input type="hidden" id="usertoken" name="student_id">
+                <input type="hidden" id="studentlevel" name="studentlevel">
+                <br>
+                <div id="beginnerdisplay">
+                    <!--<hr class="rounded">-->
+                    <div class="text-center">
+                      <img src="css/caterpillar.png" alt="" style="width:20%">
+                    </div>
+                    <input type="button" value="Beginner" name="btnBeginner" id="btnBeginner" class="btn" style="font-size:2em;width:100%; background-color: pink" >
+                    <h4>Grades 1 & 2</h4> 
+                    <p>Progress:</p>
+                    <div class="text-center"><img id="progressbar-beginner" src="" style="width: 80%;"></div>
+                    <br><br>
+                    
+                </div>
+                <div id="intermediatedisplay">
+                    <!--<hr class="rounded">-->
+                    <div class="text-center">
+                      <img src="css/silk-cocoon.png" alt="" style="width:20%">
+                    </div>
+                    <br>
+				    <input type="button" value="Intermediate" name="btnIntermediate" id="btnIntermediate" class="btn" style="font-size:2em;width:100%; background-color: pink" >
+                    <h4>Grades 3 & 4</h4>
+                    <p>Progress:</p>
+                    <div class="text-center"><img id="progressbar-intermediate" src="" style="width: 80%;"></div>
+                    <br><br>
+                </div>
+                <div id="advanceddisplay">
+                    <!--<hr class="rounded">-->
+                    <div class="text-center">
+                      <img src="css/butterfly.png" alt="" style="width:20%">
+                    </div>
+                    <input type="button" value="Advanced" name="btnAdvanced" id="btnAdvanced" class="btn" style="font-size:2em;width:100%; background-color: pink" >
+                    <h4>Grades 5 & 6</h4>
+                    <p>Progress:</p>
+                    <div class="text-center"><img id="progressbar-advanced" src="" style="width: 80%;"></div>
+                    <br><br>
+                    <!--<hr class="rounded">-->
+                    <br><br>
+                </div>
+            </div>
+		</div>
+
+<!--Beginner-->
+		<div class="col-md-8 content-wrapper " id="div-gameBeginner" style="display: none;">
+			<div>
+                <h1 id="leveltitle">Beginner</h1>
+                <br>
+                <div class="row">
+                    <div class="col-md-4" width="100%">
+                        <form id='form-beginner'>
+                            <fieldset name="question1" id="fieldsetq1">
+                                <h4 id="questiontext1">Question 1:</h4>
+                                <div>
+                                  <input type="radio" id="answer1-1" name="studentAnswer1" value="answer1" />
+                                  <label id="levelanswer1-1" for="answer1-1">test</label>
+                                    <br>
+                                  <input type="radio" id="answer1-2" name="studentAnswer1" value="answer2" />
+                                  <label id="levelanswer1-2" for="answer1-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="answer1-3" name="studentAnswer1" value="answer3" />
+                                  <label id="levelanswer1-3" for="answer1-3">answer3</label>
+                                </div>
+                                <input type="hidden" id="question_id_1" name="question_id_1">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question2" id="fieldsetq2">
+                                <h4 id="questiontext2">Question 2:</h4>
+                                <div>
+                                  <input type="radio" id="answer2-1" name="studentAnswer2" value="answer1" />
+                                  <label id="levelanswer2-1" for="answer2-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="answer2-2" name="studentAnswer2" value="answer2" />
+                                  <label id="levelanswer2-2" for="answer2-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="answer2-3" name="studentAnswer2" value="answer3" />
+                                  <label id="levelanswer2-3" for="answer2-3">answer3</label>
+                                </div>
+                                <input type="hidden" id="question_id_2" name="question_id_2">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question3" id="fieldsetq3">
+                                <h4 id="questiontext3">Question 3:</h4>
+                                <div>
+                                  <input type="radio" id="answer3-1" name="studentAnswer3" value="answer1" />
+                                  <label id="levelanswer3-1" for="answer3-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="answer3-2" name="studentAnswer3" value="answer2" />
+                                  <label id="levelanswer3-2" for="answer3-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="answer3-3" name="studentAnswer3" value="answer3" />
+                                  <label id="levelanswer3-3" for="answer3-3">answer3</label>
+                                </div>
+                                <input type="hidden" id="question_id_3" name="question_id_3">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question4" id="fieldsetq4">
+                                <h4 id="questiontext4">Question 4:</h4>
+                                <div>
+                                  <input type="radio" id="answer4-1" name="studentAnswer4" value="answer1" />
+                                  <label id="levelanswer4-1" for="answer4-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="answer4-2" name="studentAnswer4" value="answer2" />
+                                  <label id="levelanswer4-2" for="answer4-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="answer4-3" name="studentAnswer4" value="answer3" />
+                                  <label id="levelanswer4-3" for="answer4-3">answer3</label>
+                                </div>
+                                <input type="hidden" id="question_id_4" name="question_id_4">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question5" id="fieldsetq5">
+                                <h4 id="questiontext5">Question 5:</h4>
+                                <div>
+                                  <input type="radio" id="answer5-1" name="studentAnswer5" value="answer1" />
+                                  <label id="levelanswer5-1" for="answer5-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="answer5-2" name="studentAnswer5" value="answer2" />
+                                  <label id="levelanswer5-2" for="answer5-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="answer5-3" name="studentAnswer5" value="answer3" />
+                                  <label id="levelanswer5-3" for="answer5-3">answer3</label>
+                                </div>
+                                <input type="hidden" id="question_id_5" name="question_id_5">
+                              </fieldset>
+    
+                            <br><br>
+                            <input id="submitBeginner" type="button" value="Submit" style="background-color: pink">
+                        </form>
+                        <br>
+                        <div id="beginnerMessage"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="levelimages" class="text-center">
+                            
+                        <img src="css/abacus.gif" alt="" style="width:60%">
+                        <br><br><br><br><br><br>
+                        <img src="css/maths.gif" alt="" style="width:60%">
+                        <br><br><br><br><br><br>
+                        <img src="css/pencil.gif" alt="" style="width:60%">
+                        <br><br><br><br>
+
+                        </div>
+                    </div>
+                    
+                </div>
+                <br>
+                
+                
+                    <br>
+                    <div class="text-center">
+                   
+                    </div>
+                    <br>
+                    <div id='login_message' class="">
+                    </div>
+            </div>
+		</div>
+
+<!--Intermediate-->
+<!--
+        <div class="col-md-8 content-wrapper " id="div-gameIntermediate" style="display: none;">
+			<div>
+                <h1>Intermediate</h1>
+                <div class="row">
+                    <div class="col-md-4" width="100%">
+                        <form id='form-intermediate'>
+                            <fieldset name="question1" id="Ifieldsetq1">
+                                <h4>Question 1:</h4>
+                                <div>
+                                  <input type="radio" id="Ianswer1-1" name="quiz_answer1" value="answer1" />
+                                  <label for="answer1-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer1-2" name="quiz_answer1" value="answer2" />
+                                  <label for="answer1-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer1-3" name="quiz_answer1" value="answer3" />
+                                  <label for="answer1-3">answer3</label>
+                                </div>
+                                <div id="Iquestion_id_1"></div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question2" id="Ifieldsetq2">
+                                <h4>Question 2:</h4>
+                                <div>
+                                  <input type="radio" id="Ianswer2-1" name="quiz_answer2" value="answer1" />
+                                  <label for="answer2-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer2-2" name="quiz_answer2" value="answer2" />
+                                  <label for="answer2-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer2-3" name="quiz_answer2" value="answer3" />
+                                  <label for="answer2-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question3" id="Ifieldsetq3">
+                                <h4>Question 3:</h4>
+                                <div>
+                                  <input type="radio" id="Ianswer3-1" name="quiz_answer3" value="answer1" />
+                                  <label for="answer3-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer3-2" name="quiz_answer3" value="answer2" />
+                                  <label for="answer3-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer3-3" name="quiz_answer3" value="answer3" />
+                                  <label for="answer3-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question4" id="Ifieldsetq4">
+                                <h4>Question 4:</h4>
+                                <div>
+                                  <input type="radio" id="Ianswer4-1" name="quiz_answer4" value="answer1" />
+                                  <label for="answer4-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer4-2" name="quiz_answer4" value="answer2" />
+                                  <label for="answer4-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer4-3" name="quiz_answer4" value="answer3" />
+                                  <label for="answer4-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question5" id="Ifieldsetq5">
+                                <h4>Question 5:</h4>
+                                <div>
+                                  <input type="radio" id="Ianswer5-1" name="quiz_answer5" value="answer1" />
+                                  <label for="answer5-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer5-2" name="quiz_answer5" value="answer2" />
+                                  <label for="answer5-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Ianswer5-3" name="quiz_answer5" value="answer3" />
+                                  <label for="answer5-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+    
+                            <br><br>
+                            <input id="submitIntermediate" type="submit" value="Submit" style="background-color: pink">
+                        </form>
+                        <br>
+                        <div id="intermediateMessage"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center">
+
+                            <img src="css/math.gif" alt="" style="width:60%">
+                            <br><br><br><br><br><br>
+                            <img src="css/mathss.gif" alt="" style="width:60%">
+                            <br><br><br><br><br><br>
+                            <img src="css/classroom.gif" alt="" style="width:60%">
+                            <br><br><br><br>
+                        
+                        </div>
+                    </div>
+                    
+                </div>
+                <br>
+                
+                
+                    <br>
+                    <div class="text-center">
+                   
+                    </div>
+                    <br>
+                    <div id='login_message' class="">
+                    </div>
+                </form>
+            </div>
+		</div>
+-->
+
+<!--Advanced-->
+<!--
+        <div class="col-md-8 content-wrapper " id="div-gameAdvanced" style="display: none;">
+			<div>
+                <h1>Advanced</h1>
+                <div class="row">
+                    <div class="col-md-4" width="100%">
+                        <form id='form-advanced'>
+                            <fieldset name="question1" id="Afieldsetq1">
+                                <h4>Question 1:</h4>
+                                <div>
+                                  <input type="radio" id="Aanswer1-1" name="quiz_answer1" value="answer1" />
+                                  <label for="answer1-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer1-2" name="quiz_answer1" value="answer2" />
+                                  <label for="answer1-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer1-3" name="quiz_answer1" value="answer3" />
+                                  <label for="answer1-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question2" id="Afieldsetq2">
+                                <h4>Question 2:</h4>
+                                <div>
+                                  <input type="radio" id="Aanswer2-1" name="quiz_answer2" value="answer1" />
+                                  <label for="answer2-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer2-2" name="quiz_answer2" value="answer2" />
+                                  <label for="answer2-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer2-3" name="quiz_answer2" value="answer3" />
+                                  <label for="answer2-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question3" id="Afieldsetq3">
+                                <h4>Question 3:</h4>
+                                <div>
+                                  <input type="radio" id="Aanswer3-1" name="quiz_answer3" value="answer1" />
+                                  <label for="answer3-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer3-2" name="quiz_answer3" value="answer2" />
+                                  <label for="answer3-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer3-3" name="quiz_answer3" value="answer3" />
+                                  <label for="answer3-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question4" id="Afieldsetq4">
+                                <h4>Question 4:</h4>
+                                <div>
+                                  <input type="radio" id="Aanswer4-1" name="quiz_answer4" value="answer1" />
+                                  <label for="answer4-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer4-2" name="quiz_answer4" value="answer2" />
+                                  <label for="answer4-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer4-3" name="quiz_answer4" value="answer3" />
+                                  <label for="answer4-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+                              <br>
+
+                            <fieldset name="question5" id="Afieldsetq5">
+                                <h4>Question 5:</h4>
+                                <div>
+                                  <input type="radio" id="Aanswer5-1" name="quiz_answer5" value="answer1" />
+                                  <label for="answer5-1">answer1</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer5-2" name="quiz_answer5" value="answer2" />
+                                  <label for="answer5-2">answer2</label>
+                                    <br>
+                                  <input type="radio" id="Aanswer5-3" name="quiz_answer5" value="answer3" />
+                                  <label for="answer5-3">answer3</label>
+                                </div>
+                                <input type="text" id="question_id">
+                              </fieldset>
+    
+                            <br><br>
+                            <input id="submitAdvanced" type="submit" value="Submit" style="background-color: pink">
+                        </form>
+                        <br>
+                        <div id="advancedMessage"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-center">
+                
+                        <img src="css/calculator.gif" alt="" style="width:60%">
+                        <br><br><br><br><br><br>
+                        <img src="css/diploma.gif" alt="" style="width:60%">
+                        <br><br><br><br><br><br>
+                        <img src="css/mortarboard.gif" alt="" style="width:60%">
+                        <br><br><br><br>
+                        
+                        </div>
+                    </div>
+                    
+                </div>
+                <br>
+                
+                
+                    <br>
+                    <div class="text-center">
+                   
+                    </div>
+                    <br>
+                    <div id='login_message' class="">
+                    </div>
+                </form>
+            </div>
+		</div>
+-->        
+		
+		<div class="col-md-8 content-wrapper " id="div-results" style="display: none;">
+            <div>
+                <div class="text-left">
+                    <h1>Results</h1>
+                    <h2 id="score">Score: 100%</h2>
+                    <br>
+                        <table id="table-results" class="center" width="100%" style="font-size:2em">
+                            <tr>
+                                <td id="question1" width="10%"><img src="css/correct.png" alt="Correct Logo" style="width:60%"></td>
+                                <td width="90%">Question 1:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Your answer:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Correct Answer:</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td id="question2" width="10%"><img src="css/incorrect.png" alt="Correct Logo" style="width:60%"></td>
+                                <td width="90%">Question 2:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Your answer:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Correct Answer:</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td id="question3" width="10%"><img src="css/correct.png" alt="Correct Logo" style="width:60%"></td>
+                                <td width="90%">Question 3:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Your answer:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Correct Answer:</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td id="question4" width="10%"><img src="css/incorrect.png" alt="Correct Logo" style="width:60%"></td>
+                                <td width="90%">Question 4:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Your answer:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Correct Answer:</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td id="question5" width="10%"><img src="css/correct.png" alt="Correct Logo" style="width:60%"></td>
+                                <td width="90%">Question 5:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Your answer:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>Correct Answer:</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <br />
+                                </td>
+                            </tr>
+                
+                    </table>
+                    
+                    </div>
+                <!--
+                <h1>Results</h1>
+                <h2 id="score">Score: 100%</h2>
+                <br>
+                <h4>Question 1:</h4>
+                <p>Your answer:</p>
+                <p>Correct Answer:</p>
+
+                <br>
+
+                <h4>Question 2:</h4>
+                <p>Your answer:</p>
+                <p>Correct Answer:</p>
+
+                <br>
+
+                <h4>Question 3:</h4>
+                <p>Your answer:</p>
+                <p>Correct Answer:</p>
+                
+                <br>
+
+                <h4>Question 4:</h4>
+                <p>Your answer:</p>
+                <p>Correct Answer:</p>
+
+                <br>
+
+                <h4>Question 5:</h4>
+                <p>Your answer:</p>
+                <p>Correct Answer:</p>
+                -->
+            </div>
+            <div id="playagainbutton" class="text-center">
+            <input type="button" value="Play Again" name="btnPlayAgain" id="btnPlayAgain" class="btn" style="font-size:2em;width:30%; background-color: pink" >
+            <br><br>
+            </div>
+
+            <div class="text-center">
+                <img src="css/therealMike!.gif" alt="" style="width:80%">
+                <br><br><br><br>
+            </div>
+		</div>   
+
+        <div class="col-md-8 content-wrapper " id="div-history" style="display: none;">
+			<div>
+                <!--<h1>History</h1>
+                <div class="text-center">
+                    <img src="css/globe.png" alt="" style="width:20%">
+                </div>-->
+                <h1>History</h1>
+                <div class="text-center">
+                    <img src="css/reward.png" alt="" style="width:30%">
+                </div>
+                <br>
+                <div class="text-center">
+                    <table id="table-history" class="table table-bordered" style="font-size:2em">
+                        <tr>
+                            <th>Attempt</th>
+                            <th>Score</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>100%</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>75%</td>
+                        </tr>
+                </table>
+                </div>
+            <br>
+            <h4>Competition bar chart:</h4>
+            <br>
+            <div id="chart_div"></div>
+            <br>
+            </div>
+		</div>
+    <div class="col-md-2"></div>
+    </div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div>
+            <!--&nbsp;-->
+        </div>
+    </div>
+</div>
+
+</div> <!-- container //-->
+
+<br>
+    <div class="container-fluid footer-custom text-black">
+        <div class="row">
+            <div class="col-md-12 text-center">
+            
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+				&nbsp; <!-- place holder for additional footer content -->
+                <img alt="" src="css/headerlogo.png" style="width:10%; color:black">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+   
+                
+           
+<!--
+                    <form id='form-beginner'>
+                        <h4>Question 1:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="11" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+                          
+                        <br><br><br>
+                          
+                        <h4>Question 2:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+                        
+                        <br><br><br>
+                          
+                        <h4>Question 3:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br><br>
+                          
+                        <h4>Question 4:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br><br>
+                          
+                        <h4>Question 5:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br>
+
+                        <input id="submitBeginner" type="submit" value="Submit" style="background-color: pink">
+                        </form>
+-->
+
+<!--
+                    <form id='form-intermediate'>
+                        <h4>Question 1:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+                          
+                        <br><br><br>
+                          
+                        <h4>Question 2:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+                        
+                        <br><br><br>
+                          
+                        <h4>Question 3:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br><br>
+                          
+                        <h4>Question 4:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br><br>
+                          
+                        <h4>Question 5:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br>
+
+                        <input id="submitIntermediate" type="submit" value="Submit" style="background-color: pink">
+                        </form>
+-->                
+                
+<!--
+                    <form id='form-advanced'>
+                        <h4>Question 1:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="11" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+                          
+                        <br><br><br>
+                          
+                        <h4>Question 2:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+                        
+                        <br><br><br>
+                          
+                        <h4>Question 3:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br><br>
+                          
+                        <h4>Question 4:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br><br>
+                          
+                        <h4>Question 5:</h4>
+                        <input type="radio" id="answer1" name="quiz_answer" value="Answer 1">
+                        <label for="answer1">Answer 1</label><br>
+                        <input type="radio" id="answer2" name="quiz_answer" value="Answer 2">
+                        <label for="answer2">Answer 2</label><br>
+                        <input type="radio" id="answer3" name="quiz_answer" value="Answer 3">
+                        <label for="answer3">Answer 3</label>
+
+                        <br><br>
+
+                        <input id="submitAdvanced" type="submit" value="Submit" style="background-color: pink">
+                        </form>
+-->
